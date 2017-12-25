@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public abstract class SinglePageScraper extends PageScraper {
     protected String url;
-    protected Document siteText;
+    protected Document document;
 
     public SinglePageScraper(String country, String university, String department,
                              String url) {
@@ -29,6 +29,6 @@ public abstract class SinglePageScraper extends PageScraper {
     }
 
     protected void setSiteText() throws IOException {
-        siteText = Jsoup.connect(url).get();
+        document = Jsoup.connect(url).get();
     }
 }

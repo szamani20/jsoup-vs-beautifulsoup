@@ -33,9 +33,9 @@ public class Calgary extends MultiPageScraper {
                 String research = document.select("div#unitis-profile-block-profileblock_401 p").toString();
                 if (research == null || research.length() == 0)
                     research = document.select("div#unitis-profile-block-profileblock_0 p").toString();
-                research = research.replace("<p>","");
+                research = research.replace("<p>", "");
                 research = research.replace("</p>", "");
-                List<String> researchInterests = Arrays.asList(research.split("<br>"));
+                List<String> researchInterests = arrayToStringWithTrim(research.split("<br>"));
 
                 String email = document.select("div.unitis-email-list a").attr("href");
 
@@ -49,11 +49,12 @@ public class Calgary extends MultiPageScraper {
 
     @Override
     protected void setDir() {
-        dir = "src\\multi_page\\calgary\\";
+        dir = "src/multi_page/calgary/";
     }
 
     public static void main(String[] args) {
-        Long t = System.currentTimeMillis();
+        long t1 = System.currentTimeMillis();
+
         String country = "Ca";
         String university = "calgary";
         String department = "CS";
@@ -61,7 +62,8 @@ public class Calgary extends MultiPageScraper {
         String uniBaseUrl = "http://www.ucalgary.ca";
         List<String> urls = extractFacultyUrls(facultyPageUrl, uniBaseUrl);
         new Calgary(country, university, department, urls);
-        System.out.println(System.currentTimeMillis() - t);
+
+        System.out.println("Time: " + (System.currentTimeMillis() - t1));
     }
 
     private static List<String> extractFacultyUrls(String facultyPageUrl, String uniBaseUrl) {

@@ -1,9 +1,6 @@
 package base;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by szamani on 12/18/2017.
@@ -28,8 +25,12 @@ public abstract class PageScraper {
     protected abstract void createJson();
 
     protected void saveToFile() {
-        FileWriterHelper.writeListToFile(dir + country + "_" + university + "_" + department + ".txt", fields);
+        FileWriterHelper.writeListToFile(dir + country + "_" + university + "_" + department + ".html", fields);
         FileWriterHelper.writeMapToFile(dir + country + "_" + university + "_" + department + "_exceptions.txt", exception);
+    }
+
+    protected List<String> arrayToStringWithTrim(String[] array) {
+        return Arrays.asList(Arrays.stream(array).map(String::trim).toArray(unused -> array));
     }
 
     protected abstract void setDir();

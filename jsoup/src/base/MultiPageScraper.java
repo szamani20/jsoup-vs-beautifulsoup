@@ -31,6 +31,7 @@ public abstract class MultiPageScraper extends PageScraper {
         saveToFile();
     }
 
+
     protected void setSiteTexts() throws IOException {
         for (String url : urls)
             documents.add(Jsoup.connect(url).get());
